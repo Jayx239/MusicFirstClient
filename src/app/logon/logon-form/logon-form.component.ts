@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import { LogonService } from '../logon.service';
 
 @Component({
   selector: 'app-logon-form',
   templateUrl: './logon-form.component.html',
-  styleUrls: ['./logon-form.component.css']
+  styleUrls: ['./logon-form.component.css'],
+  providers: [LogonService]
 })
 export class LogonFormComponent implements OnInit {
   logonForm;
@@ -14,7 +16,7 @@ export class LogonFormComponent implements OnInit {
   userNameMinSize = 2;
   userPasswordMinSize = 6;
 
-  constructor() { }
+  constructor(private logonService: LogonService) { }
 
   ngOnInit() {
     this.logonForm = new FormGroup({
@@ -34,6 +36,10 @@ export class LogonFormComponent implements OnInit {
     console.log(logonForm.value);
     console.log(logonForm.valid);
     console.log(logonForm);
+    if (logonForm.valid) {
+      this.logonService.submitLogon(logonForm.value).subscribe(data => {
+        console.log(data);
+      });
+    }
   }
-
 }

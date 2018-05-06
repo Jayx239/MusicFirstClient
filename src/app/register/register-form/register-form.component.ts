@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import { RegisterService } from "../register.service";
+import {LogonService} from "../../logon/logon.service";
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.css']
+  styleUrls: ['./register-form.component.css'],
+  providers: [RegisterService]
 })
 export class RegisterFormComponent implements OnInit {
 
@@ -27,6 +30,8 @@ export class RegisterFormComponent implements OnInit {
 
   userNameMinSize = 1;
   userPasswordMinSize = 6;
+
+  constructor(private registerService: RegisterService) { }
 
   ngOnInit(): void {
     this.registerFormModel = new FormGroup({
@@ -65,12 +70,15 @@ export class RegisterFormComponent implements OnInit {
     });
   }
 
-  constructor() { }
-
   onSubmit(registerForm: NgForm) {
     console.log(registerForm.value);
     console.log(registerForm.valid);
     console.log(registerForm);
+    if (registerForm.valid) {
+      this.registerService.submitRegister(registerForm.value).subscribe(data => {
+        console.log(data);
+      });
+    }
   }
 
 
