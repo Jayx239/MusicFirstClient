@@ -1,0 +1,3 @@
+<audio [controls]="audioContainer.controls">
+  <source *ngFor="let source of sources" src="{{path}}?filename={{source.name}}&token={{token}}" type="{{source.type}}" type="{{source.type}}">
+</audio>

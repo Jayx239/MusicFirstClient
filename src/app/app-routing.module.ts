@@ -5,7 +5,9 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { LogonComponent } from './logon/logon.component';
 import { RegisterComponent } from './register/register.component';
-
+import {BrowseComponent} from './browse/browse.component';
+import {BrowseMusicComponent} from './browse/browse-music/browse-music.component';
+import {BrowseVideosComponent} from './browse/browse-videos/browse-videos.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,8 +15,14 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'logon', component: LogonComponent },
   { path: 'register', component: RegisterComponent },
-
-
+  { path: 'browse', component: BrowseComponent,
+    children: [
+      { path: '', redirectTo: '/browse', pathMatch: 'full' },
+      { path: 'music', component: BrowseMusicComponent },
+      { path: 'videos', component: BrowseVideosComponent },
+      { path: 'images', component: BrowseVideosComponent }
+    ]
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 
 ];

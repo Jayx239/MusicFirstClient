@@ -15,6 +15,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { UserComponent } from './user/user.component';
+import { MediaComponent } from './media/media.component';
+import { AudioComponent } from './media/audio/audio.component';
+import { VideoComponent } from './media/video/video.component';
+import { ImageComponent } from './media/image/image.component';
+import { BrowseComponent } from './browse/browse.component';
+import { MediaContainerComponent } from './media/media-container/media-container.component';
+import { BrowseVideosComponent } from './browse/browse-videos/browse-videos.component';
+import { BrowseMusicComponent } from './browse/browse-music/browse-music.component';
+
 
 
 @NgModule({
@@ -28,7 +38,16 @@ import { AboutComponent } from './about/about.component';
     DashboardComponent,
     HomeComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    UserComponent,
+    MediaComponent,
+    AudioComponent,
+    VideoComponent,
+    ImageComponent,
+    BrowseComponent,
+    MediaContainerComponent,
+    BrowseVideosComponent,
+    BrowseMusicComponent
   ],
   imports: [
     NgbModule.forRoot(),

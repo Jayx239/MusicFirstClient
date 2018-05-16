@@ -1,0 +1,3 @@
+<video [width]="videoContainer.width" [height]="videoContainer.height" [autoplay]="videoContainer.autoPlay" [controls]="videoContainer.controls">
+  <source *ngFor="let source of sources" src="{{path}}?filename={{source.name}}&token={{token}}" type="{{source.type}}">
+</video>

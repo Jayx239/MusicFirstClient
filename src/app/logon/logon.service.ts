@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class LogonService {
 
-  logonUrl = 'http://localhost:8080' + '/logon';
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
-  constructor(private http: HttpClient) { }
-
-  submitLogon(formData) {
-    return this.http.post(this.logonUrl + '/clientSubmit', formData);
+  submitLogon(userName: string, password: string) {
+    return this.authService.login(userName, password);
   }
 
 

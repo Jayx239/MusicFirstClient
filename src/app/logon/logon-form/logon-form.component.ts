@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-import { LogonService } from '../logon.service';
+import {LogonService} from '../logon.service';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-logon-form',
   templateUrl: './logon-form.component.html',
   styleUrls: ['./logon-form.component.css'],
-  providers: [LogonService]
+  providers: [LogonService, AuthService]
 })
 export class LogonFormComponent implements OnInit {
   logonForm;
   userName;
   password;
+  grantType;
 
   userNameMinSize = 2;
   userPasswordMinSize = 6;
@@ -20,14 +22,15 @@ export class LogonFormComponent implements OnInit {
 
   ngOnInit() {
     this.logonForm = new FormGroup({
-      'userName' : new FormControl(this.userName, [
+      'username' : new FormControl(this.userName, [
         Validators.required,
         Validators.minLength(this.userNameMinSize)
       ]),
       'password' : new FormControl(this.password, [
         Validators.required,
         Validators.minLength(this.userPasswordMinSize)
-      ])
+      ]),
+      'grant_type' : new FormControl(this.grantType)
     });
   }
 
@@ -36,8 +39,9 @@ export class LogonFormComponent implements OnInit {
     console.log(logonForm.value);
     console.log(logonForm.valid);
     console.log(logonForm);
+    logonForm.value.grant_type = 'password';
     if (logonForm.valid) {
-      this.logonService.submitLogon(logonForm.value).subscribe(data => {
+      this.logonService.submitLogon(logonForm.value.username, logonForm.value.password).subscribe(data => {
         console.log(data);
       });
     }
