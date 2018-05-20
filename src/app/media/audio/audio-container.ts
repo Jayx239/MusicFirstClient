@@ -1,3 +1,3 @@
 export interface AudioContainer {
-  control: string;
+  controls: string;
 }

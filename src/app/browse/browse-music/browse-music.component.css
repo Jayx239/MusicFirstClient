@@ -1,0 +1,14 @@
+.audio-container {
+
+}
+
+.audio-container audio {
+  width: 100%;
+}
+
+.audio-container .song-name {
+  margin-bottom: 5px;
+}
+.audio-container .artist-name {
+  margin-bottom: 5px;
+}

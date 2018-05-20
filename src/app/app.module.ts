@@ -24,6 +24,7 @@ import { BrowseComponent } from './browse/browse.component';
 import { MediaContainerComponent } from './media/media-container/media-container.component';
 import { BrowseVideosComponent } from './browse/browse-videos/browse-videos.component';
 import { BrowseMusicComponent } from './browse/browse-music/browse-music.component';
+import { PlaylistComponent } from './media/playlist/playlist.component';
 
 
 
@@ -47,7 +48,8 @@ import { BrowseMusicComponent } from './browse/browse-music/browse-music.compone
     BrowseComponent,
     MediaContainerComponent,
     BrowseVideosComponent,
-    BrowseMusicComponent
+    BrowseMusicComponent,
+    PlaylistComponent
   ],
   imports: [
     NgbModule.forRoot(),

@@ -18,7 +18,7 @@ export class BrowseVideosComponent implements OnInit {
   }
 
   loadVideos() {
-    this.videos = this.mediaService.getVideos(['312123'], this.authService.getToken());
+    this.videos = this.mediaService.getVideos(['312123'], this.authService.getToken().tokenString);
     /*
     const video = {
       videoContainer: {

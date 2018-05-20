@@ -1,24 +1,19 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from '../auth/auth.service';
+import {Track} from '../browse/browse-music/track';
+import {Token} from '../auth/token';
 
 @Injectable()
 export class MediaService {
-  httpClient;
-  authService;
 
-  constructor(http: HttpClient, auth: AuthService) {
-    this.httpClient = http;
-    this.authService = auth;
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
-  getAudio(audioIds: string[], token) {
-    /*
-    const options = this.getTokenHeader();
-    return this.httpClient.post('localhost:3000/media/audio', audioId, options);
-    */
-    const tracks = [];
-    const track = {
+  getAudio(audioIds: string[], token: Token) {
+    return this.http.get<[Track]>('http://localhost:8080/media/audioByArtist?artist=Meek');
+    /*'track.'
+      = {
       audioContainer: {
         controls: 'controls'
       },
@@ -28,15 +23,15 @@ export class MediaService {
       }]
     };
     tracks.push(track);
-    return tracks;
+    return tracks;*/
   }
   /* method to get all videos for a given input */
   getVideos(videoIds: string[], token: string) {
     /* const options this.getTokenHeader(); */
     /* return this.httpClient.post('localhost:3000/media/video', audioId, options);*/
     /* TODO: Update backend to store info about media */
-    var videos = [];
-    var video = {
+    const videos = [];
+    const video = {
       videoContainer: {
         width: 768,
         height: 400,
@@ -55,7 +50,7 @@ export class MediaService {
 
   getTokenHeader() {
     const options = {
-      headers: new HttpHeaders().set('x-access-token', this.authService.getToken())
+      headers: new HttpHeaders().set('x-access-token', this.authService.getToken().tokenString)
     };
     return options;
   }

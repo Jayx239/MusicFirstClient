@@ -1,3 +1,6 @@
-<div name="AudioContainer" [(ngModel)]="tracks" class="audio-container" *ngFor="let track of tracks" ngDefaultControl>
-  <app-audio audioContainer="track" sources="track.sources" name="app-audio"></app-audio>
+<div name="AudioContainer" class="audio-container" *ngFor="let track of tracks" ngDefaultControl>
+  <div class="song-name">{{track.songName}}</div>
+  <div class="artist-name">{{track.artist}}</div>
+  <app-audio [audioContainer]="audioContainer" [sources]="tracks" [token]="token" name="app-audio"></app-audio>
+  <button (click)="addTrackToPlaylist(track)">Add to Playlist</button>
 </div>

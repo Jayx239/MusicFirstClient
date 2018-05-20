@@ -52,6 +52,9 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('access_token');
+    const token: Token = {
+      tokenString: localStorage.getItem('access_token')
+    };
+    return token;
   }
 }
